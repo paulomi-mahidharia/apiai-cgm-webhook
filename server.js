@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 
 // viewed at http://localhost:8080
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/index.html')); 
+    res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 app.listen(8080, function(){
@@ -25,31 +25,27 @@ app.listen(8080, function(){
 
 app.get('/logan/:infoType', function(req, res) {
   var type = req.params.infoType;
+  console.log(type);
   var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
   var xhttp = new XMLHttpRequest();
   xhttp.open("GET", "https://logancgm.azurewebsites.net/api/v1/entries.json?count=1", false);
   xhttp.setRequestHeader("Content-type", "application/json");
   xhttp.send();
+
   var response = JSON.parse(xhttp.responseText);
   var parsedResponse = response[0][type];
-  webHookResponse = makeWebhookResult(parsedResponse)
-  var obj = {[type] : parsedResponse};
-  res.json(obj);
+  var webHookResponse = makeWebhookResult(type, parsedResponse);
+  //var obj = {[type] : parsedResponse};
+  //res.json(obj);
+  res.json(webHookResponse);
 });
 
 function makeWebhookResult(type, parsedResponse){
-
-
-  speech = "Sensor glucose value is currently " +  + " with a direction of " + direction
-
-    print("Response:")
-    print(speech)
+  var speech = "Logan's " + type + " is " + parsedResponse;
 
     return {
         "speech": speech,
         "displayText": speech,
-        # "data": data,
-        # "contextOut": [],
         "source": "apiai-cgm-webhook"
     }
 }
