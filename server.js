@@ -34,10 +34,13 @@ app.get('/logan/:infoType', function(req, res) {
 
   var response = JSON.parse(xhttp.responseText);
   var parsedResponse = response[0][type];
-  var webHookResponse = makeWebhookResult(type, parsedResponse);
-  //var obj = {[type] : parsedResponse};
-  //res.json(obj);
-  res.json(webHookResponse);
+  if(typeof parsedResponse !== "undefined"){
+    var webHookResponse = makeWebhookResult(type, parsedResponse);
+    res.json(webHookResponse);
+  }else{
+    res.json({});
+  }
+
 });
 
 function makeWebhookResult(type, parsedResponse){
