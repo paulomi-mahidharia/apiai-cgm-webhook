@@ -1,0 +1,31 @@
+{
+  "name": "apiai-cgm-webhook",
+  "version": "1.0.0",
+  "description": "Project to generate a customised webhook response using an external web service ",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "connect": "^3.5.0",
+    "multer": "^1.2.1",
+    "node": "^0.0.0",
+    "nodejs": "^0.0.0",
+    "serve-static": "^1.11.1",
+    "xmlhttprequest": "^1.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulomi-mahidharia/apiai-cgm-webhook.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paulomi-mahidharia/apiai-cgm-webhook/issues"
+  },
+  "homepage": "https://github.com/paulomi-mahidharia/apiai-cgm-webhook#readme"
+}
